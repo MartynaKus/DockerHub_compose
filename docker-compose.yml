@@ -1,0 +1,27 @@
+version: '3'
+services:
+  apache:
+    build: 
+      context: ./apache
+      dockerfile: apache.Dockerfile
+    ports:
+      - "6666:6666/udp"
+    networks:
+      - front
+      - back
+  php:
+    build:  
+       context: ./php
+       dockerfile: php.Dockerfile
+    networks:
+      - back
+  mysql:
+    build:  
+       context: ./mysql
+       dockerfile: mysql.Dockerfile
+    networks:
+      - back
+networks:
+  front:
+  back:
+    
